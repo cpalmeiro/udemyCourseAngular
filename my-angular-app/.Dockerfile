@@ -1,13 +1,12 @@
-FROM node:20
+FROM node:22-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-
+COPY package.json package-lock.json* ./
 RUN npm install
 
 COPY . .
 
 EXPOSE 4200
 
-CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--poll", "2000", "--no-interactive"]
+CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--port", "4200", "--no-open"]
